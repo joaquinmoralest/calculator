@@ -8,29 +8,22 @@ const clearBtn = document.querySelector('#clear').addEventListener('click', clea
 const deleteBtn = document.querySelector('#delete')
 const percentageBtn = document.querySelector('#percentage')
 const addBtn = document.querySelector('#add').addEventListener('click', () => {
-  // num1 = Number(display.textContent)
-  // display.textContent = '0'
   operator = '+'
-  console.log(num1, num2, operator)
   operate(num1, num2, operator)
 })
 const subtractBtn = document.querySelector('#subtract').addEventListener('click', () => {
-  num1 = Number(display.textContent)
-  display.textContent = '0'
   operator = '-'
+  operate(num1, num2, operator)
 })
 const multiplyBtn = document.querySelector('#multiply').addEventListener('click', () => {
-  num1 = Number(display.textContent)
-  display.textContent = '0'
   operator = 'x'
+  operate(num1, num2, operator)
 })
 const divideBtn = document.querySelector('#divide').addEventListener('click', () => {
-  num1 = Number(display.textContent)
-  display.textContent = '0'
   operator = '÷'
+  operate(num1, num2, operator)
 })
 const equalBtn = document.querySelector('#equal').addEventListener('click', () => {
-  num2 = Number(display.textContent)
   operate(num1, num2, operator)
 })
 const dotBtn = document.querySelector('#dot').addEventListener('click', () => {
