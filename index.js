@@ -14,6 +14,19 @@ function clickOperand(button) {
   updateDisplay()
 }
 
+function clickOperator(button) {
+  if (operator === '') {
+    operator = button.textContent
+    num1 = Number(displayValue)
+  } else {
+    operator = button.textContent
+    num2 = Number(displayValue)
+    operate(num1, num2, operator)
+    num1 = result
+  }
+  displayValue = ''
+}
+
 function operate(num1, num2, operator) {
   switch (operator) {
     case '+':
@@ -22,16 +35,19 @@ function operate(num1, num2, operator) {
       updateDisplay()
       break;
     case '-':
-      displayValue = subtract(num1, num2)
-      populateDisplay(displayValue)
+      result = subtract(num1, num2)
+      displayValue = result.toString()
+      updateDisplay()
       break;
     case 'x':
-      displayValue = multiply(num1, num2)
-      populateDisplay(displayValue)
+      result = multiply(num1, num2)
+      displayValue = result.toString()
+      updateDisplay()
       break;
     case '÷':
-      displayValue = divide(num1, num2)
-      populateDisplay(displayValue)
+      result = divide(num1, num2)
+      displayValue = result.toString()
+      updateDisplay()
       break;
     default:
       break;
@@ -39,7 +55,9 @@ function operate(num1, num2, operator) {
 }
 
 function deleteLastCharacter() {
-  displayValue = displayValue.slice(0, -1)
+  displayValue.length > 1
+    ? displayValue = displayValue.slice(0, -1)
+    : displayValue = '0'
   updateDisplay()
 }
 
@@ -56,39 +74,14 @@ const display = document.querySelector('#display')
 const clearBtn = document.querySelector('#clear').addEventListener('click', clear)
 const deleteBtn = document.querySelector('#delete').addEventListener('click', deleteLastCharacter)
 const percentageBtn = document.querySelector('#percentage')
-const addBtn = document.querySelector('#add').addEventListener('click', () => {
-  if (operator === '') {
-    operator = '+'
-    num1 = Number(displayValue)
-  } else {
-    operator = '+'
-    num2 = Number(displayValue)
-    operate(num1, num2, operator)
-    num1 = result
-  }
-  displayValue = ''
-})
-
-const subtractBtn = document.querySelector('#subtract').addEventListener('click', () => {
-  operator = '-'
-  operate(num1, num2, operator)
-})
-
-const multiplyBtn = document.querySelector('#multiply').addEventListener('click', () => {
-  operator = 'x'
-  operate(num1, num2, operator)
-})
-
-const divideBtn = document.querySelector('#divide').addEventListener('click', () => {
-  operator = '÷'
-  operate(num1, num2, operator)
-})
-
-const equalBtn = document.querySelector('#equal').addEventListener('click', () => {
-  num2 = Number(displayValue)
-  operate(num1, num2, operator)
-})
-
+const addBtn = document.querySelector('#add')
+addBtn.addEventListener('click', () => clickOperator(addBtn))
+const subtractBtn = document.querySelector('#subtract')
+subtractBtn.addEventListener('click', () => clickOperator(subtractBtn))
+const multiplyBtn = document.querySelector('#multiply')
+multiplyBtn.addEventListener('click', () => clickOperator(multiplyBtn))
+const divideBtn = document.querySelector('#divide')
+divideBtn.addEventListener('click', () => clickOperator(divideBtn))
 const dotBtn = document.querySelector('#dot')
 dotBtn.addEventListener('click', () => clickOperand(dotBtn))
 const one = document.querySelector('#one')
@@ -111,3 +104,7 @@ const nine = document.querySelector('#nine')
 nine.addEventListener('click', () => clickOperand(nine))
 const zero = document.querySelector('#zero')
 zero.addEventListener('click', () => clickOperand(zero))
+const equalBtn = document.querySelector('#equal').addEventListener('click', () => {
+  num2 = Number(displayValue)
+  operate(num1, num2, operator)
+})
