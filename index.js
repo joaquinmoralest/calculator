@@ -32,6 +32,12 @@ function clickDot(button) {
   updateDisplay()
 }
 
+function clickPercentage() {
+  const toPercentage = Number(displayValue) / 100
+  displayValue = toPercentage.toString()
+  updateDisplay()
+}
+
 function operate(num1, num2, operator) {
   switch (operator) {
     case '+':
@@ -78,7 +84,7 @@ function clear() {
 const display = document.querySelector('#display')
 const clearBtn = document.querySelector('#clear').addEventListener('click', clear)
 const deleteBtn = document.querySelector('#delete').addEventListener('click', deleteLastCharacter)
-const percentageBtn = document.querySelector('#percentage')
+const percentageBtn = document.querySelector('#percentage').addEventListener('click', clickPercentage)
 const addBtn = document.querySelector('#add')
 addBtn.addEventListener('click', () => clickOperator(addBtn))
 const subtractBtn = document.querySelector('#subtract')
@@ -87,10 +93,8 @@ const multiplyBtn = document.querySelector('#multiply')
 multiplyBtn.addEventListener('click', () => clickOperator(multiplyBtn))
 const divideBtn = document.querySelector('#divide')
 divideBtn.addEventListener('click', () => clickOperator(divideBtn))
-
 const dotBtn = document.querySelector('#dot')
 dotBtn.addEventListener('click', () => clickDot(dotBtn))
-
 const one = document.querySelector('#one')
 one.addEventListener('click', () => clickOperand(one))
 const two = document.querySelector('#two')
