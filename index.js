@@ -27,6 +27,11 @@ function clickOperator(button) {
   displayValue = ''
 }
 
+function clickDot(button) {
+  !displayValue.includes('.') ? displayValue += button.textContent : null
+  updateDisplay()
+}
+
 function operate(num1, num2, operator) {
   switch (operator) {
     case '+':
@@ -82,8 +87,10 @@ const multiplyBtn = document.querySelector('#multiply')
 multiplyBtn.addEventListener('click', () => clickOperator(multiplyBtn))
 const divideBtn = document.querySelector('#divide')
 divideBtn.addEventListener('click', () => clickOperator(divideBtn))
+
 const dotBtn = document.querySelector('#dot')
-dotBtn.addEventListener('click', () => clickOperand(dotBtn))
+dotBtn.addEventListener('click', () => clickDot(dotBtn))
+
 const one = document.querySelector('#one')
 one.addEventListener('click', () => clickOperand(one))
 const two = document.querySelector('#two')
