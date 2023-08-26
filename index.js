@@ -87,7 +87,6 @@ const divideBtn = document.querySelector('#divide').addEventListener('click', ()
 const equalBtn = document.querySelector('#equal').addEventListener('click', () => {
   num2 = Number(displayValue)
   operate(num1, num2, operator)
-  clear()
 })
 
 const dotBtn = document.querySelector('#dot')
